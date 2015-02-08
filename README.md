@@ -1,33 +1,33 @@
-## Synopsis
+## About
+The goal of this project is to find out which countries use Instagram as online stores the most. We will also collect Instagram posts that correspond to onlineshop tags for further analyses on what kinds of products are sold by the online shop members.
 
-This project is written in Python. It will fetch timeline from Twitter and let the script analyzes user's feeling from most recent tweets. Try it, it's fun!
-
-## Motivation
-
-In the lab, I have many friends that are very less in talking. I don't have many chances to know what are they up to and how is their recent feeling. By running this script, I know their feeling and probably will cheer them up when they are sad. Another story: my sister only tweets when she is sad. When I tried to run the script to analyze her tweets, the script proves it!
-
-## Installation
-
-This project uses Twitter API, NLTK library for Natural Language Processing, Numpy for fundamental computation in Python and matplotlib to plot a simple visualization. In the script, I already assigned access token as permission to use Twitter API, you don't have to generate by yourself. Install Python, NLTK, Numpy and matplotlib if you haven't.
+## Requirement
+This project uses Instagram API and NLTK library for Natural Language Processing. In the script, I already assigned client id as permission to use Instagram API, you don't have to generate by yourself. Install Python and NLTK if you haven't.
 
 1. Python 2.7 (https://www.python.org/downloads/), do not use Python 3 as not supported by NLTK library
 2. NLTK (http://www.nltk.org/install.html)
-3. Numpy (http://www.scipy.org/install.html), it is usually included during Python installation
-4. matplotlib (http://matplotlib.org/users/installing.html)
 
-## Tests
+REQUIREMENT
+1. Python - I used Python 2.7, and some things:
+	a. Request - To do HTTP request. Install pip first, and then type 'pip install request' in terminal/cmd. (http://docs.python-requests.org/en/latest/). There is a good tutorial for this module in (http://nbviewer.ipython.org/github/ptwobrussell/mining-the-social-web-2nd-edition/blob/master/ipynb/Chapter%202%20-%20Mining%20Facebook.ipynb)
+	b. Numpy - Python package for scientific computing (http://www.numpy.org/) I only provide the Win-version installer
+2. NLTK - Python based library for language analysis (http://www.nltk.org/) I only provide the Win-version installer
 
-Download the script and run through command line as below:
+HOW-TO
+1. To crawl and store data from the Big Red Confessions' Page, run the "crawler.py"; it will generate "data_raw.txt" file
+2. To do text processing (removing punctuation, stop words, stemming, and other cleaning) from the data_raw.txt, run the "crawler.py". It will generate "data_cleaned.txt" file
+3. To analyze the data from data_cleaned.txt, run the "analyzer.py". It takes ~5 minutes to see the result.
+	a. The long run is caused by the language analysis part, if you want to take a quick look for the result, just comment these 2 lines:
+		- annotated_msg = pos_tagging( msg_dict[msg_id] ) in line 55
+		- if (word in annotated_msg and annotated_msg[word] in nouns): in line 59
+	b. The most commented and liked lists will only show the <ID> of confessions. To check the confession message, open "data_raw.txt" and search for the #<ID>
 
-Put the twitter's username without quotation and "@" symbol. This will fetch 100 recent tweets from @girikuncoro and shows visualization.
-```
-# python feeling.py girikuncoro
-```
-You can analyze more than 100 tweets by adding argument next to the username. For example:
-```
-# python feeling.py girikuncoro 250
-```
-This will fetch 250 recent tweets of @girikuncoro and shows visualization. Enjoy!
+## How To
+
+1. To learn how many posts in Instagram related to online stores, run "country_shopper.py", it will print out total number of posts, related tags and most active countries.
+2. To learn what kind of products are sold in Instagram (onlineshopbali tag), run "crawl.py", it will generate "data_raw.txt" with more than 20,000 posts. I chose Bali due to frequent use of english words.
+3. To clean the data, run "cleaner.py", it will remove unnecessary stuffs like smiley, hashtags, unrelated links, etc and generate "data_cleaned.txt"
+4. Data analyses is postponed due to limited amount of time. I will update this project again after learning some analyses techniques.
 
 ## Author
 
